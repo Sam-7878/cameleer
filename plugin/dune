@@ -2,6 +2,9 @@
  (libraries ppxlib gospel why3 cameleer)
  (name plugin_cameleer)
  (modes plugin)
+ ; Compiler-libs uses runtime primitives which the Why3 host may not export.
+ ; Resolve these against this switch's position-independent native runtime.
+ (link_flags -cclib -lasmrun_pic)
  (embed_in_plugin_libraries compiler-libs.common ocaml-compiler-libs.shadow
    ppxlib.astlib ppxlib.stdppx ppxlib.ast ppxlib fmt gospel cameleer))
 
